@@ -37,25 +37,28 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   double playerWidth = 0.4;
 
   // brick variables
-  static double firstBrickX = -1 + wallGap;
-  static double firstBrickY = -0.9;
-  static double brickWidth = 0.4;
-  static double brickHeight = 0.05;
-  static double brickGap = 0.01;
-  static int numberOfBricksInRow = 3;
-  static double wallGap = 0.5 * (2 - numberOfBricksInRow * brickWidth - (numberOfBricksInRow-1) * brickGap);
-  bool brickBroken = false;
+  ///// static double firstBrickX = -1 + wallGap;
+  ///// static double firstBrickY = -0.9;
+  
+  // HandsOn Activity 1: change the brickWidth and brickHeight
+  ///// static double brickWidth = 0.9;
+  ///// static double brickHeight = 0.5;
+  ///// static double brickGap = 0.01;
+  
+  // HandsOn Activity 2: Increase the number of bricks
+  ///// static int numberOfBricksInRow = 1;
+  ///// static double wallGap = 0.5 * (2 - numberOfBricksInRow * brickWidth - (numberOfBricksInRow-1) * brickGap);
+  ///// bool brickBroken = false;
 
-  List MyBricks = [
+  ///// List MyBricks = [
     // [x,y,broken =true/false]
-    [firstBrickX + 0*(brickWidth + brickGap),firstBrickY,false],
-    [firstBrickX + 1*(brickWidth + brickGap), firstBrickY,false],
-    [firstBrickX + 2*(brickWidth + brickGap), firstBrickY,false],
-  ];
+    ///// [firstBrickX + 0 * (brickWidth + brickGap),firstBrickY,false],
+  ///// ];
 
   @override
   void initState() {
     super.initState();
+    //HandsOn Activity 3: Generate 3 more rows of bricks
     _ticker = createTicker((Duration elapsed) {
       if (hasGameStarted && !isGameOver) {
         setState(() {
@@ -109,20 +112,20 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
   }
 
-  void checkForBrokenBricks() {
-    for (int i = 0; i < MyBricks.length; i++) {
-      if (ballX >= MyBricks[i][0] &&
-          ballX <= MyBricks[i][0] + brickWidth &&
-          ballY >= MyBricks[i][1] &&
-          ballY <= MyBricks[i][1] + brickHeight &&
-          MyBricks[i][2] == false) {
-        setState(() {
-          MyBricks[i][2] = true;
+  ///// void checkForBrokenBricks() {
+    ////// for (int i = 0; i < MyBricks.length; i++) {
+      ///// if (ballX >= MyBricks[i][0] &&
+          ///// ballX <= MyBricks[i][0] + brickWidth &&
+          ///// ballY >= MyBricks[i][1] &&
+          ///// ballY <= MyBricks[i][1] + brickHeight &&
+          ///// MyBricks[i][2] == false) {
+        ///// setState(() {
+          ///// MyBricks[i][2] = true;
 
-          double leftDist = (MyBricks[i][0] - ballX).abs();
-          double rightDist = (MyBricks[i][0] + brickWidth - ballX).abs();
-          double topDist = (MyBricks[i][1] - ballY).abs();
-          double bottomDist = (MyBricks[i][1] + brickHeight - ballY).abs();
+          ///// double leftDist = (MyBricks[i][0] - ballX).abs();
+          ///// double rightDist = (MyBricks[i][0] + brickWidth - ballX).abs();
+          ///// double topDist = (MyBricks[i][1] - ballY).abs();
+          ///// double bottomDist = (MyBricks[i][1] + brickHeight - ballY).abs();
 
           String collisionSide =
               findMin(leftDist, rightDist, topDist, bottomDist);
@@ -178,18 +181,16 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ballY = 0;
       isGameOver = false;
       hasGameStarted = false;
-      MyBricks = generateBricks(); // Generate new bricks
+      ///// MyBricks = generateBricks(); // Generate new bricks
     });
   }
 
-List<List<dynamic>> generateBricks() {
-  return [
-    [firstBrickX + 0 * (brickWidth + brickGap), firstBrickY, false],
-    [firstBrickX + 1 * (brickWidth + brickGap), firstBrickY, false],
-    [firstBrickX + 2 * (brickWidth + brickGap), firstBrickY, false],
-    // Add more bricks as needed
-  ];
-}
+
+///// List<List<dynamic>> generateBricks() {
+  ///// return [
+    ///// [firstBrickX + 0 * (brickWidth + brickGap), firstBrickY, false],
+  ///// ];
+///// }
 
 
   @override
