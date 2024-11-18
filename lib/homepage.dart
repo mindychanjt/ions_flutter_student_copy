@@ -52,6 +52,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     [firstBrickX + 1*(brickWidth + brickGap), firstBrickY,false],
     [firstBrickX + 2*(brickWidth + brickGap), firstBrickY,false],
   ];
+  
   @override
   void initState() {
     super.initState();
