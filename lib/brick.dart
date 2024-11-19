@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyBrick extends StatelessWidget {
-  ///// final double brickX;
-  ///// final double brickY;
-  ///// final double brickHeight;
-  ///// final double brickWidth;
-  ///// final bool brickBroken;
+  final double brickX;
+  final double brickY;
+  final double brickHeight;
+  final double brickWidth;
+  final bool brickBroken;
 
   const MyBrick({
     super.key,
@@ -18,8 +18,8 @@ class MyBrick extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (///// brickBroken) {
-      ///// return const SizedBox.shrink(); 
+    if (brickBroken) {
+      return const SizedBox.shrink(); 
     }
 
     return Align(
@@ -32,7 +32,7 @@ class MyBrick extends StatelessWidget {
         child: Container(
           height: MediaQuery.of(context).size.height * brickHeight / 2,
           width: MediaQuery.of(context).size.width * brickWidth / 2,
-          ///// color: Colors.deepPurple,
+          color: Colors.deepPurple,
         ),
       ),
     );
