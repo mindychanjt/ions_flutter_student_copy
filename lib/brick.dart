@@ -1,24 +1,11 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+/* STEP 0: Remove the "/*" on line 2 and "*/" on line_
 
 // STEP 1: explain Stateless vs Stateful:
 class MyBrick extends StatelessWidget {
+//STEP 2: set up the fields in a Dart class
+  brickX
 
-
-  /*
- STEP 2:
-        set up the fields in a Dart class
-  It represents the properties of a "brick" object.
-  brickX -> X-coordinate of the brick's position on a screen
-  brickY -> Y-coordinate of the brick's position 
-  brickHeight -> how tall the brick appears
-  brickWidth -> how wide the brick appears
-  brickBroken -> true: brick broken, false: brick intact
-  */
-  final double brickX;
-  final double brickY;
-  final double brickHeight;
-  final double brickWidth;
-  final bool brickBroken;
 
   const MyBrick({
     super.key,
@@ -50,11 +37,13 @@ class MyBrick extends StatelessWidget {
         child: Container(
           // calculates the brick's height and width as a fraction of the screen's height
           // use Media Query to sized dynamically relative to the screen dimensions
-          height: MediaQuery.of(context).size.height * brickHeight / 2,
-          width: MediaQuery.of(context).size.width * brickWidth / 2,
+          height: 
+          width: 
           color: Colors.deepPurple,
         ),
       ),
     );
   }
 }
+
+*/
