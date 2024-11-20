@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:ions_flutter/ball.dart';
-// import 'package:ions_flutter/brick.dart';
+// import 'package:ions_flutter/brick.dart'; // uncomment this line
 import 'package:ions_flutter/coverscreen.dart';
 import 'package:ions_flutter/gameoverscreen.dart';
 import 'package:ions_flutter/player.dart';
@@ -36,27 +36,21 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   double playerX = -0.2;
   static const double playerWidth = 0.4;
 
+  /* STEP 4: configure the brick properties with values
   // Brick configuration
-  /*
-  step 4: configure the brick properties with values
-  explain the wallGap portion using the diagram 
+  static const double brickWidth =
+  static const double brickHeight = 
+  static const double brickGap = 
+  static const 
+  static const double wallGap =
+  static const double firstBrickX = 
+  static const double firstBrickY = 
   */
-  static const double brickWidth = 0.4;
-  static const double brickHeight = 0.05;
-  static const double brickGap = 0.01;
-  static const int numberOfBricksInRow = 1;
-  static const double wallGap = 
-      0.5 * (2 - numberOfBricksInRow * brickWidth - (numberOfBricksInRow - 1) * brickGap);
-  static const double firstBrickX = -1 + wallGap;
-  static const double firstBrickY = -0.7;
 
   // Brick list
-  
-  /*
-  STEP 5:
-        add an empty brick list
+  /*  STEP 5: add an empty brick list
+  List
   */
-  List<List<dynamic>> bricks = [];
 
   @override
   void initState() {
@@ -67,7 +61,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         setState(() {
           updateDirection();
           moveBall();
-          checkForBrokenBricks();
+          // checkForBrokenBricks();
 
           if (isPlayerDead()) {
             isGameOver = true;
@@ -115,29 +109,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
   }
 
-  /*
-  STEP 7:
-         Use a for loop; it iterates through all bricks to check for collisions
-  brick[0] & brick[1] represents the x & y coordinates of the brick's top-left corner
-  brick[2] indicates whether the brick is already broken; "true" if broken, "false" if not
-    */
+  /* STEP 7: CHECK FOR BROKEN BRICKS
   void checkForBrokenBricks() {
     for (int i = 0; i < bricks.length; i++) {
       final brick = bricks[i];
-      //ballX is within the brick's horizontal range so we type:
-      if (ballX >= brick[0] &&
-          ballX <= brick[0] + brickWidth &&
-          // ball y is within the brick's vertical range hence we type:
-          ballY >= brick[1] &&
-          ballY <= brick[1] + brickHeight &&
-          // this ensures we only process unbroken bricks 
-          !brick[2]) {
-
-        // setState is a flutter method to update the UI
+      if (
+        
+      ) {
         setState(() {
-          brick[2] = true;
-
-          // Determine collision side
+          brick[2] = 
           final collisionSide = findMin({
             'left': (brick[0] - ballX).abs(),
             'right': (brick[0] + brickWidth - ballX).abs(),
@@ -162,6 +142,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         });
       }
     }
+    */
 
     // Add a new row of bricks if all are broken
     if (bricks.every((brick) => brick[2])) {
@@ -169,18 +150,11 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
   }
 
-  //STEP 8: create a new brick when all bricks are broken
+  /*STEP 8: CREATE A NEW BRICK WHEN ALL BRICKS ARE BROKEN
   void addBrickRow() {
-    // this is to calculate the new row position
-    final newRowY =
-        firstBrickY - (bricks.length ~/ numberOfBricksInRow) * (brickHeight + brickGap);
-    // iterate through a loop where each brick are space based on the width and gap values
-    for (int col = 0; col < numberOfBricksInRow; col++) {
-      final brickX = firstBrickX + col * (brickWidth + brickGap);
-      // the false here means brick is unbroken
-      bricks.add([brickX, newRowY, false]);
-    }
+
   }
+  */
 
   String findMin(Map<String, double> distances) {
     return distances.entries.reduce((a, b) => a.value < b.value ? a : b).key;
@@ -214,38 +188,16 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       isGameOver = false;
       hasGameStarted = false;
 
-      // STEP 9: generate 1 row of bricks when the game is reset
+      /* STEP 9: GENERATE 1 ROW OF BRICKS 
       bricks = generateBricks(1); // Reset with number of rows of bricks
+      */
     });
   }
 
-  /* STEP 10: 
-          creates a grid of bricks for the game
+  /* STEP 10: CREATES A GRID OF BRICKS FOR THE GAME
+  List
+    
   */
-  List<List<dynamic>> generateBricks(int rows) {
-    // initialise all the bricks where the newbricks will be stored
-    final List<List<dynamic>> newBricks = [];
-    /* outer loop iterate through the rows
-    "row": index through the current row
-    "rows" total number of rows to generate
-    "rowY" vertical position of the current row 
-    */
-    for (int row = 0; row < rows; row++) {
-      final rowY = firstBrickY - row * (brickHeight + brickGap);
-      /* inner loop iterate through bricks in the same row
-      "col": index of the current brick in the row
-      "numberOfBricksInRow": total number of bricks in a single row
-      "brickX": horizontal position of the brick
-      */
-      for (int col = 0; col < numberOfBricksInRow; col++) {
-        final brickX = firstBrickX + col * (brickWidth + brickGap);
-        // add the bricks and each brick is represented as below:
-        newBricks.add([brickX, rowY, false]);
-      }
-    }
-    // return the completed grid
-    return newBricks;
-  }
 
   @override
   void dispose() {
@@ -254,19 +206,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  /* STEP 6:
-      EXPLAIN HERE, FOCUS ON THE BRICK PART
-  1. flutter build method defines the UI and interaction logic for the game
-  2. combines widgets to display and control game element
-  3. Keyboard Listener is for Keyboard Input
-  4. GestureDetector is for Tap Input
-  5. Scaffold is the Base Structure
-  6. Stack contains the game element
-  7. the MyBrick is loop through the bricks list to display all bricks
-  brick[0] & brick[1] represents the x & y coordinates of the brick's top-left corner
-  brick[2] indicates whether the brick is already broken
-  */
-
+ // STEP 6: EXPLAIN WIDGET, PARTICULARLY ON BRICK
   @override
   Widget build(BuildContext context) {
     return KeyboardListener(
@@ -308,14 +248,16 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   playerX: playerX,
                   playerWidth: playerWidth,
                 ),
+                /*
                 for (var brick in bricks)
                   MyBrick(
-                    brickX: brick[0],
-                    brickY: brick[1],
-                    brickBroken: brick[2],
+                    brickX: ,
+                    brickY: ,
+                    brickBroken: ,
                     brickHeight: brickHeight,
                     brickWidth: brickWidth,
                   ),
+                  */
               ],
             ),
           ),
@@ -323,5 +265,4 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
   }
-}
 

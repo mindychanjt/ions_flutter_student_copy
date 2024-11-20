@@ -22,9 +22,7 @@ class MyBrick extends StatelessWidget {
   // STEP 3: Set up the widget, SizedBox.shrink, height & width
   @override
   Widget build(BuildContext context) {
-    if (brickBroken) {
-      return const  // More efficient to hide a widget instead of using an empty Container
-    }
+    if 
 
     return Align(
       alignment: Alignment(
