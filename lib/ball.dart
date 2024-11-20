@@ -42,7 +42,7 @@ class MyBall extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: Colors.deepPurple,
                     ),
-                    width: 15,
+                    width: 20,
                     height: 15,
                   ),
                 ),

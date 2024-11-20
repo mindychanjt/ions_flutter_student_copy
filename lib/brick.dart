@@ -1,11 +1,14 @@
-// import 'package:flutter/material.dart';
-/* STEP 0: Remove the "/*" on line 2 and "*/" on line_
+/* STEP 0: Remove "/*" on line 1
 
-// STEP 1: explain Stateless vs Stateful:
+import 'package:flutter/material.dart';
+
+// STEP 1: Stateless vs Stateful
 class MyBrick extends StatelessWidget {
-//STEP 2: set up the fields in a Dart class
-  brickX
 
+
+  
+ // STEP 2: set up the fields in a Dart class 
+  final 
 
   const MyBrick({
     super.key,
@@ -16,15 +19,11 @@ class MyBrick extends StatelessWidget {
     required this.brickBroken,
   });
 
-  /*
-  sizedbox.shrink() creates a widget with no size (essentially invisible)
-  */
-
+  // STEP 3: Set up the widget, SizedBox.shrink, height & width
   @override
-  // step 3: set up what happen to the brick
   Widget build(BuildContext context) {
     if (brickBroken) {
-      return const SizedBox.shrink(); // More efficient to hide a widgeet instead of using an empty Container
+      return const  // More efficient to hide a widget instead of using an empty Container
     }
 
     return Align(
@@ -33,10 +32,8 @@ class MyBrick extends StatelessWidget {
         brickY,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(2.5), //clips the widget into a rectangle with rounded corners
+        borderRadius: BorderRadius.circular(2.5), 
         child: Container(
-          // calculates the brick's height and width as a fraction of the screen's height
-          // use Media Query to sized dynamically relative to the screen dimensions
           height: 
           width: 
           color: Colors.deepPurple,
@@ -45,5 +42,3 @@ class MyBrick extends StatelessWidget {
     );
   }
 }
-
-*/

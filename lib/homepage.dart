@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
@@ -39,40 +37,37 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   static const double playerWidth = 0.4;
 
   // Brick configuration
-
-  // STEP 4: configure the brick properties with values, wallGap portion using the diagram 
-
-
   /*
-  static const double brickWidth = ;
-  static const double brickHeight = ;
-  static const double brickGap = ;
-  static const i = ;
-  static const double wallGap = 
-  
-  static const double firstBrickX = 
-  static const double firstBrickY = 
+  step 4: configure the brick properties with values
+  explain the wallGap portion using the diagram 
   */
+  static const double brickWidth = 0.4;
+  static const double brickHeight = 0.05;
+  static const double brickGap = 0.01;
+  static const int numberOfBricksInRow = 1;
+  static const double wallGap = 
+      0.5 * (2 - numberOfBricksInRow * brickWidth - (numberOfBricksInRow - 1) * brickGap);
+  static const double firstBrickX = -1 + wallGap;
+  static const double firstBrickY = -0.7;
 
   // Brick list
   
-  
-  // STEP 5: add an empty brick list
   /*
-  List ; 
+  STEP 5:
+        add an empty brick list
   */
-
+  List<List<dynamic>> bricks = [];
 
   @override
   void initState() {
     super.initState();
-    // bricks = generateBricks(3); // Start with 3 rows
+    bricks = generateBricks(1); // Start with 3 rows
     _ticker = createTicker((Duration elapsed) {
       if (hasGameStarted && !isGameOver) {
         setState(() {
           updateDirection();
           moveBall();
-          //checkForBrokenBricks();
+          checkForBrokenBricks();
 
           if (isPlayerDead()) {
             isGameOver = true;
@@ -119,13 +114,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ballXDirection = Direction.RIGHT;
     }
   }
-  
 
-  
-  // STEP 7: check for broken bricks
-  
   /*
-  void checkForBrokenBricks()  {
+  STEP 7:
+         Use a for loop; it iterates through all bricks to check for collisions
+  brick[0] & brick[1] represents the x & y coordinates of the brick's top-left corner
+  brick[2] indicates whether the brick is already broken; "true" if broken, "false" if not
+    */
+  void checkForBrokenBricks() {
     for (int i = 0; i < bricks.length; i++) {
       final brick = bricks[i];
       //ballX is within the brick's horizontal range so we type:
@@ -165,29 +161,26 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           }
         });
       }
-    } 
-    
+    }
 
     // Add a new row of bricks if all are broken
-    /*
     if (bricks.every((brick) => brick[2])) {
       addBrickRow();
     }
-    */
   }
-  */
 
   //STEP 8: create a new brick when all bricks are broken
-  /*
   void addBrickRow() {
+    // this is to calculate the new row position
     final newRowY =
-      ;
-    for (int col = 0; ) {
-      final brickX = ;
-      bricks.add ;
+        firstBrickY - (bricks.length ~/ numberOfBricksInRow) * (brickHeight + brickGap);
+    // iterate through a loop where each brick are space based on the width and gap values
+    for (int col = 0; col < numberOfBricksInRow; col++) {
+      final brickX = firstBrickX + col * (brickWidth + brickGap);
+      // the false here means brick is unbroken
+      bricks.add([brickX, newRowY, false]);
     }
   }
-  */
 
   String findMin(Map<String, double> distances) {
     return distances.entries.reduce((a, b) => a.value < b.value ? a : b).key;
@@ -222,15 +215,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       hasGameStarted = false;
 
       // STEP 9: generate 1 row of bricks when the game is reset
-      /*
       bricks = generateBricks(1); // Reset with number of rows of bricks
-      */
     });
   }
 
-  // STEP 10: creates a grid of bricks for the game
-
-  /*
+  /* STEP 10: 
+          creates a grid of bricks for the game
+  */
   List<List<dynamic>> generateBricks(int rows) {
     // initialise all the bricks where the newbricks will be stored
     final List<List<dynamic>> newBricks = [];
@@ -255,7 +246,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     // return the completed grid
     return newBricks;
   }
-  */
 
   @override
   void dispose() {
@@ -318,7 +308,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   playerX: playerX,
                   playerWidth: playerWidth,
                 ),
-                // MyBrick
+                for (var brick in bricks)
+                  MyBrick(
+                    brickX: brick[0],
+                    brickY: brick[1],
+                    brickBroken: brick[2],
+                    brickHeight: brickHeight,
+                    brickWidth: brickWidth,
+                  ),
               ],
             ),
           ),
@@ -327,3 +324,4 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 }
+
