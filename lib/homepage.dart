@@ -142,13 +142,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         });
       }
     }
-    */
+    
 
-    // Add a new row of bricks if all are broken
-    if (bricks.every((brick) => brick[2])) {
+    
+    if (bricks.every((brick) => brick[2])) { // Add a new row of bricks if all are broken
       addBrickRow();
     }
   }
+  */
 
   /*STEP 8: CREATE A NEW BRICK WHEN ALL BRICKS ARE BROKEN
   void addBrickRow() {
@@ -265,4 +266,4 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     );
   }
-
+}
