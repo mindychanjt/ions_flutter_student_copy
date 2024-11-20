@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
@@ -55,7 +57,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    bricks = generateBricks(1); // Start with 3 rows
+    //bricks = generateBricks(1); 
     _ticker = createTicker((Duration elapsed) {
       if (hasGameStarted && !isGameOver) {
         setState(() {

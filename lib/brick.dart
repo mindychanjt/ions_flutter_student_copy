@@ -1,4 +1,4 @@
-/* STEP 0: Remove "/*" on line 1
+/* STEP 0: Remove "/* */" on line 1 and line 43 respectively
 
 import 'package:flutter/material.dart';
 
@@ -40,3 +40,4 @@ class MyBrick extends StatelessWidget {
     );
   }
 }
+*/
